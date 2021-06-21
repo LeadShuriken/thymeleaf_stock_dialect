@@ -15,6 +15,15 @@ import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
 
 public class StockTickerProcessor extends AbstractAttributeTagProcessor {
+    private static final String ARROW_BASE = "border-left:6px solid transparent;border-right: 6px solid transparent;";
+    private static final String ARROW_UP = ARROW_BASE + "border-bottom: 6px solid green;";
+    private static final String ARROW_DOWN = ARROW_BASE + "border-top: 6px solid red;";
+    private static final String PRICE_UP = "<p style=\"display:flex;align-items:center;color:green;\"><span style=\"display:block;width:0;height:0;"
+            + ARROW_UP + "\"></span>";
+    private static final String PRICE_DOWN = "<p style=\"display:flex;align-items:center;color:red;\"><span style=\"display:block;width:0;height:0;"
+            + ARROW_DOWN + "\"></span>";
+
+    private static final StringBuilder RESULT = new StringBuilder();
 
     private static final String ATTR_NAME = "ticker";
     private static final int PRECEDENCE = 10000;
@@ -31,20 +40,14 @@ public class StockTickerProcessor extends AbstractAttributeTagProcessor {
             BigDecimal price = stock.getQuote().getPrice();
             BigDecimal change = stock.getQuote().getChangeInPercent();
             boolean pos = change.compareTo(BigDecimal.ZERO) > 0;
-            String styles, color;
-            if (pos) {
-                color = "green";
-                styles = "border-left:8px solid transparent;border-right: 8px solid transparent;border-bottom: 8px solid green;";
-            } else {
-                color = "red";
-                styles = "border-left:8px solid transparent;border-right: 8px solid transparent;border-top: 8px solid red;";
-            }
 
-            structureHandler.setBody("<p style=\"display:flex;align-items:center;color:" + color
-                    + ";\"><span style=\"display:block;width:0;height:0;" + styles + "\"></span>" + price.toString()
-                    + "</p>", false);
+            RESULT.append((pos ? PRICE_UP : PRICE_DOWN) + price.toString() + "</p>");
+
+            structureHandler.setBody(RESULT.toString(), false);
+
         } catch (IOException e) {
             structureHandler.setBody("Stock Ticket Not Found", false);
         }
+        RESULT.setLength(0);
     }
 }
