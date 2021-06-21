@@ -44,7 +44,7 @@ public class StockTickerProcessor extends AbstractAttributeTagProcessor {
                     + ";\"><span style=\"display:block;width:0;height:0;" + styles + "\"></span>" + price.toString()
                     + "</p>", false);
         } catch (IOException e) {
-            e.printStackTrace();
+            structureHandler.setBody("Stock Ticket Not Found", false);
         }
     }
 }
