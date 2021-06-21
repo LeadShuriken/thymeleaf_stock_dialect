@@ -41,7 +41,9 @@ public class StockTickerProcessor extends AbstractAttributeTagProcessor {
             BigDecimal change = stock.getQuote().getChangeInPercent();
             boolean pos = change.compareTo(BigDecimal.ZERO) > 0;
 
-            RESULT.append((pos ? PRICE_UP : PRICE_DOWN) + price.toString() + "</p>");
+            RESULT.append(pos ? PRICE_UP : PRICE_DOWN);
+            RESULT.append(price.toString());
+            RESULT.append("</p>");
 
             structureHandler.setBody(RESULT.toString(), false);
 
