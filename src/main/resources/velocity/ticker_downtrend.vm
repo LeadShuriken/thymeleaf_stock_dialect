@@ -1,0 +1,6 @@
+<p style="display:flex;align-items:center;color:red;">
+    <span
+        style="display:block;width:0;height:0;border-left:6px solid transparent;border-right: 6px solid transparent;border-top: 6px solid red;">
+    </span>
+    $ticker
+</p>
