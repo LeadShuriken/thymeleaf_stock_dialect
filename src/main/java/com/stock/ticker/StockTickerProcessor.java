@@ -44,7 +44,7 @@ public class StockTickerProcessor extends AbstractAttributeTagProcessor {
 
             structureHandler.setBody(result.toString(), false);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             structureHandler.setBody("Stock Ticket Not Found", false);
         }
     }
