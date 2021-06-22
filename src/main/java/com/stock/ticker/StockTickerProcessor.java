@@ -44,8 +44,7 @@ public class StockTickerProcessor extends AbstractAttributeTagProcessor {
             BigDecimal change = stock.getQuote().getChangeInPercent();
             boolean trend = change.compareTo(BigDecimal.ZERO) > 0;
 
-            Template t = velocityEngine
-                    .getTemplate("velocity/" + (trend ? "ticker_uptrend.vm" : "ticker_downtrend.vm"));
+            Template t = velocityEngine.getTemplate(trend ? "ticker_uptrend.vm" : "ticker_downtrend.vm");
 
             VelocityContext vcontext = new VelocityContext();
             vcontext.put("ticker", price);
