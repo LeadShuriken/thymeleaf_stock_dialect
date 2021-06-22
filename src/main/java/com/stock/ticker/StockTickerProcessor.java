@@ -23,8 +23,6 @@ public class StockTickerProcessor extends AbstractAttributeTagProcessor {
     private static final String PRICE_DOWN = "<p style=\"display:flex;align-items:center;color:red;\"><span style=\"display:block;width:0;height:0;"
             + ARROW_DOWN + "\"></span>";
 
-    private static final StringBuilder RESULT = new StringBuilder();
-
     private static final String ATTR_NAME = "ticker";
     private static final int PRECEDENCE = 10000;
 
@@ -39,17 +37,15 @@ public class StockTickerProcessor extends AbstractAttributeTagProcessor {
             Stock stock = YahooFinance.get(HtmlEscape.escapeHtml5(attributeValue));
             BigDecimal price = stock.getQuote().getPrice();
             BigDecimal change = stock.getQuote().getChangeInPercent();
-            boolean pos = change.compareTo(BigDecimal.ZERO) > 0;
+            
+            StringBuilder result = new StringBuilder(change.compareTo(BigDecimal.ZERO) > 0 ? PRICE_UP : PRICE_DOWN);
+            result.append(price.toString());
+            result.append("</p>");
 
-            RESULT.append(pos ? PRICE_UP : PRICE_DOWN);
-            RESULT.append(price.toString());
-            RESULT.append("</p>");
-
-            structureHandler.setBody(RESULT.toString(), false);
+            structureHandler.setBody(result.toString(), false);
 
         } catch (IOException e) {
             structureHandler.setBody("Stock Ticket Not Found", false);
         }
-        RESULT.setLength(0);
     }
 }
