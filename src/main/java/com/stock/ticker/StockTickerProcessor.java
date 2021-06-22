@@ -1,6 +1,5 @@
 package com.stock.ticker;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 
 import org.thymeleaf.context.ITemplateContext;
@@ -37,7 +36,7 @@ public class StockTickerProcessor extends AbstractAttributeTagProcessor {
             Stock stock = YahooFinance.get(HtmlEscape.escapeHtml5(attributeValue));
             BigDecimal price = stock.getQuote().getPrice();
             BigDecimal change = stock.getQuote().getChangeInPercent();
-            
+
             StringBuilder result = new StringBuilder(change.compareTo(BigDecimal.ZERO) > 0 ? PRICE_UP : PRICE_DOWN);
             result.append(price.toString());
             result.append("</p>");
@@ -45,7 +44,7 @@ public class StockTickerProcessor extends AbstractAttributeTagProcessor {
             structureHandler.setBody(result.toString(), false);
 
         } catch (Exception e) {
-            structureHandler.setBody("Stock Ticket Not Found", false);
+            structureHandler.setBody("Ticket Exception", false);
         }
     }
 }
