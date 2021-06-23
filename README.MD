@@ -15,6 +15,7 @@ THYMELEAF-STOCK-DIALECT uses a number of open source projects:
   * [SPRING-BOOT] - SPRING PROJ BOOTSTRAP
   * [THYMELEAF] - SERVER SIDE JAVA TEMPLATION ENGINE
   * [YAHOOFINANCE-API] - FINANCIAL QUOTES API BY SSTRICKX
+  * [APACHE-VELOCITY] - JAVA TEMPLATING ENGINE
 
 ## Installation
 
@@ -50,3 +51,4 @@ This application is an **GRADLE APPLICATION USING THE GRADLE WRAPPER**;
   [GRADLE]: <https://gradle.org>
   [THYMELEAF]: <https://www.thymeleaf.org>
   [YAHOOFINANCE-API]: <https://github.com/sstrickx/yahoofinance-api>
+  [APACHE-VELOCITY]: <https://velocity.apache.org>
