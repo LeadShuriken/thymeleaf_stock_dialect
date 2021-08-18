@@ -22,7 +22,7 @@ THYMELEAF-STOCK-DIALECT uses a number of open source projects:
 Download Java dependancies for the project adn build:
 ```sh
 $ cd thyemeleaf-stock-dialect
-$ gradlew build --refresh-dependencies
+$ ./gradlew build --refresh-dependencies
 ```
 
 ## Running and Building
