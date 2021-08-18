@@ -19,10 +19,10 @@ THYMELEAF-STOCK-DIALECT uses a number of open source projects:
 
 ## Installation
 
-Download Java dependancies for the project:
+Download Java dependancies for the project adn build:
 ```sh
 $ cd thyemeleaf-stock-dialect
-$ gradlew assembleDevelopmentDebug --refresh-dependencies
+$ gradlew build --refresh-dependencies
 ```
 
 ## Running and Building
